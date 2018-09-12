@@ -26,7 +26,7 @@ function mapDispatchToProps(dispatch) {
     handleSubmitSuccess: (data)=>{
       console.log("submit success");
     },
-    handleClickLogin: () => {
+    handleSubmit: () => {
       dispatch(login())
     }
   };

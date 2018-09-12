@@ -14,7 +14,12 @@ export default class LoginPage extends React.Component {
     return (
       <section>
         {this.props.login && <Redirect to={referer}/>}
-        <h1>asfgasgsag</h1>
+        <Panel>
+          <Panel.Heading> <Panel.Title>Login</Panel.Title> </Panel.Heading>
+          <Panel.Body>
+            <LoginForm onSubmit={this.props.handleSubmit}/>
+          </Panel.Body>
+        </Panel>
       </section>
     );
   }
