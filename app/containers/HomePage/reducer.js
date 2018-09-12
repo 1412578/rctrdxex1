@@ -1,0 +1,37 @@
+/*
+ * HomeReducer
+ *
+ * The reducer takes care of our data. Using actions, we can change our
+ * application state.
+ * To add a new action, add it to the switch statement in the reducer function
+ *
+ * Example:
+ * case YOUR_ACTION_CONSTANT:
+ *   return state.set('yourStateVariable', true);
+ */
+import { fromJS } from 'immutable';
+
+import { API_REQUEST, API_REQUEST_SUCCESS, API_REQUEST_FAILURE } from './constants';
+
+// The initial state of the App
+export const initialState = fromJS({
+  _loading: false,
+  _success: false
+});
+
+function homeReducer(state = initialState, action) {
+  switch (action.type) {
+    case API_REQUEST:
+      return state.set("_loading", true);
+    case API_REQUEST_SUCCESS:
+      return state.set("_loading", false)
+                  .set("_success", true)
+                  .set("data", fromJS(action.data));
+    case API_REQUEST_FAILURE:
+      return state.set("_loading", false).set("_success", false).set("_error", fromJS(action.error));
+    default:
+      return state;
+  }
+}
+
+export default homeReducer;
