@@ -5,7 +5,7 @@ import { initialState } from './reducer';
  * Direct selector to the form state domain
  */
 
-const selectFormDomain = state => state.get('loginPage', initialState);
+const selectLoginPageDomain = state => state.get('loginPage', initialState);
 
 /**
  * Other specific selectors
@@ -16,7 +16,12 @@ const selectFormDomain = state => state.get('loginPage', initialState);
  */
 
 const makeSelectForm = () =>
-  createSelector(selectFormDomain, substate => substate.toJS());
-
+  createSelector(selectLoginPageDomain, substate => substate.toJS());
+const makeSelectRequest = createSelector(selectLoginPageDomain, substate => {
+  return {
+    request: substate.get("request"),
+    success: substate.get("success")
+  }
+});
 export default makeSelectForm;
-export { selectFormDomain };
+export { makeSelectRequest };

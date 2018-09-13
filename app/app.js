@@ -34,7 +34,7 @@ import { translationMessages } from './i18n';
 
 // Import CSS reset and Global Styles
 import './global-styles';
-import './styles/css/bootstrap.min.css';
+import './styles/css/app.scss';
 
 // Observe loading of Open Sans (to remove open sans, remove the <link> tag in
 // the index.html file and this observer)

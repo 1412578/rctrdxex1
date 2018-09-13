@@ -58,8 +58,8 @@ export function repoLoadingError(error) {
   };
 }
 
-export function login(){
-  localStorage.setItem("username", "tri");
+export function login(username){
+  localStorage.setItem("username", username);
   return {
     type: LOGIN
   }

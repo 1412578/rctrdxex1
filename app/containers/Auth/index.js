@@ -12,7 +12,7 @@ import { createStructuredSelector } from 'reselect';
 import { compose } from 'redux';
 
 import injectReducer from 'utils/injectReducer';
-import makeSelectAuth from './selectors';
+import {makeSelectRequest} from './selectors';
 import reducer from './reducer';
 import messages from './messages';
 import {Switch, Route, Link, Redirect} from 'react-router-dom';
@@ -26,22 +26,27 @@ export class Auth extends React.Component {
   constructor(props){
     super(props);
   }
+  componentDidCatch(error, info){
+    console.log(error);
+    this.setState({error: true});
+  }
   componentDidMount(){
     if (localStorage.getItem("username"))
-      this.props.setLogin();
+      this.props.setLogin(localStorage.getItem("username"));
   }
   render() {
-    return (
-      <div>
-        <button onClick={this.props.handleClickLogout}>logout</button>
-        {!this.props.login && <Redirect to={{pathname: "/login", state: {referer: this.props.location.pathname}}}/>}
-        <Switch>
-          <Route exact path="/home" component={HomePage} /> 
-          <Route exact path="/" component={HomePage} />
-          <Route path="" component={NotFoundPage} />
-        </Switch>
-      </div>
-    );
+      return (
+        <div>
+          <h3>{localStorage.getItem("username")}</h3>
+          <button onClick={this.props.handleClickLogout}>logout</button>
+          {!this.props.login && <Redirect to={{ pathname: "/login", state: { referer: this.props.location.pathname } }} />}
+          <Switch>
+            <Route exact path="/home" component={HomePage} />
+            <Route exact path="/" component={HomePage} />
+            <Route path="" component={NotFoundPage} />
+          </Switch>
+        </div>
+      );
   }
 }
 
@@ -55,7 +60,7 @@ const mapStateToProps = (state) => ({
 
 function mapDispatchToProps(dispatch) {
   return {
-    setLogin: () => dispatch(login()),
+    setLogin: (username) => dispatch(login(username)),
     handleClickLogout: () => dispatch(logout()),
     dispatch,
   };

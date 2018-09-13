@@ -36,12 +36,12 @@ const LoginForm = ({handleSubmit, error, pristine, submitting}) =>{
             autoComplete="password" />
         <div className="form-group">
             <button
-                type="submit"
                 className="btn btn-primary"
                 disabled={error || submitting || pristine}>
                 Login
             </button>
         </div>
+        <small className="help-text text-danger">{error}</small>
     </form>
 }
 
