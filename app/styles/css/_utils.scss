@@ -1,0 +1,8 @@
+@for $i from 1 through 10 {
+    .mb-#{$i}{
+        margin-bottom: #{$i}px;
+    }
+    .mt-#{$i}{
+        margin-top: #{$i}px;
+    }
+}

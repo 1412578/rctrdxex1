@@ -20,6 +20,7 @@ import {makeSelectLogin} from 'containers/App/selectors';
 import {login, logout} from 'containers/App/actions';
 import  HomePage  from 'containers/HomePage/Loadable';
 import NotFoundPage from 'containers/NotFoundPage/Loadable';
+import Header from 'components/Header';
 
 /* eslint-disable react/prefer-stateless-function */
 export class Auth extends React.Component {
@@ -35,11 +36,11 @@ export class Auth extends React.Component {
       this.props.setLogin(localStorage.getItem("username"));
   }
   render() {
+      const username = localStorage.getItem("username");
       return (
         <div>
-          <h3>{localStorage.getItem("username")}</h3>
-          <button onClick={this.props.handleClickLogout}>logout</button>
           {!this.props.login && <Redirect to={{ pathname: "/login", state: { referer: this.props.location.pathname } }} />}
+          <Header handleLogout={this.props.handleLogout} username={username}/>
           <Switch>
             <Route exact path="/home" component={HomePage} />
             <Route exact path="/" component={HomePage} />
@@ -61,7 +62,7 @@ const mapStateToProps = (state) => ({
 function mapDispatchToProps(dispatch) {
   return {
     setLogin: (username) => dispatch(login(username)),
-    handleClickLogout: () => dispatch(logout()),
+    handleLogout: () => dispatch(logout()),
     dispatch,
   };
 }

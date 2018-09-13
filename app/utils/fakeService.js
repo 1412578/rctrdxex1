@@ -10,7 +10,7 @@ export const fakeService = {
                     resolve(db[username].role);
                 else
                     reject(new Error("Login failed"));
-            }, 1000);
+            }, 3000);
         });
     }
 }

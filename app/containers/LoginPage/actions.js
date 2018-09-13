@@ -7,7 +7,7 @@
 
 import { DEFAULT_ACTION, LOGIN_FAILURE, LOGIN_REQUEST, LOGIN_SUCCESS } from './constants';
 import { fakeService } from 'utils/fakeService';
-import { login } from 'containers/app/actions';
+import { login } from 'containers/App/actions';
 import {stopSubmit, setSubmitFailed} from "redux-form";
 
 export function defaultAction() {
@@ -25,8 +25,8 @@ export function loginRequest(data){
     })
     .catch(err=>{
       dispatch(failure());
-      dispatch(stopSubmit("login-form", {_error: "Login failed", username: "cannot find username"}));
-      dispatch(setSubmitFailed("login-form", ["username"])); // set fields has error
+      dispatch(stopSubmit("login-form", {_error: "Login failed"}));
+      dispatch(setSubmitFailed("login-form")); // set fields has error
     });
   }
   function request(){

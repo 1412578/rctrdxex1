@@ -1,5 +1,26 @@
+@import 'custom-variables';
+@import 'utils';
 @import 'bootstrap';
-.panel-default .panel-heading{
-    background-color: #08344a;
-    color: white;
+
+label{
+    font-family: 'Roboto', sans-serif;
+}
+
+.panel{
+    overflow: hidden;
+}
+.panel .panel-heading{
+    position: relative;
+}
+.panel .panel-heading .loading{
+    background: linear-gradient(to right, rgba(0,0,0,0) 0%,$loading-color 80%, rgba(0,0,0,0) 100%);
+    animation: login-request 2s infinite;
+}
+@keyframes login-request{
+    from {
+        left: -20%;        
+    }
+    to {
+        left: 100%;
+    }
 }

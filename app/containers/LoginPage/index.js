@@ -31,11 +31,10 @@ function mapDispatchToProps(dispatch) {
       console.log("submit success");
     },
     handleSubmit: (data) => {
-      console.log("handleSubmit");
-      
       // async validate here... 
       // this handle is only called when synchError is empty
       // when use redux-thunk, it bypass this handle because api request is in thunk
+      dispatch(loginRequest(data));      
     },
     handleSubmitSuccess: (result) =>{
     },
