@@ -23,9 +23,13 @@ class Header extends React.Component {
           <Navbar.Brand>
             <Link to="/">ABC</Link>
           </Navbar.Brand>
+          <Navbar.Toggle />
         </Navbar.Header>
         <Nav>
           <NavItem eventKey={1}>Create new diagram</NavItem>
+        </Nav>
+        <Nav>
+          <input type="text" placeholder="...diagrams" className="search"/>
         </Nav>
         <Nav pullRight>
           <NavDropdown title={this.props.username}>

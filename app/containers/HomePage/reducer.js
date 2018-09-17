@@ -26,8 +26,8 @@ function diagramListReducer(state = fromJS({_loading: false, _success: false, da
                   .set("_success", true)
                   .set("data", action.data);
     case LIST_DIAGRAM_FAILURE:
-      return state.set("loading", false)
-                  .set("success", false);
+      return state.set("_loading", false)
+                  .set("_success", false);
     default:
      return state;
   } 

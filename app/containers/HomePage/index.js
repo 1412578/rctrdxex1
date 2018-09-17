@@ -15,6 +15,7 @@ import reducer from './reducer';
 import saga from './saga';
 import { makeSelectSuccess, makeSelectLoading, makeSelectData, makeSelectError, makeSelectListDiagram } from './selectors';
 import Button from 'components/Button';
+import LoadingIndicator from 'components/LoadingIndicator/index';
 import {submit, loadListDiagram} from './actions'
 import {DiagramItem} from './DiagramItem';
 import placeholder from 'images/placeholder.png';
@@ -27,8 +28,7 @@ export class HomePage extends React.PureComponent {
    */
 
   componentDidMount(){
-    console.log("sssssss")
-      this.props.loadListDiagram();
+    this.props.loadListDiagram();
   }
   render() {
     return (
@@ -45,7 +45,8 @@ export class HomePage extends React.PureComponent {
             <div className="col-xs-12"><h3>Diagrams</h3></div>
           </div>
           <div className="row">
-            <DiagramList diagrams={this.props.listDiagram}/>
+            {!this.props._loading && <DiagramList diagrams={this.props.listDiagram}/> }
+            {this.props._loading && <LoadingIndicator /> }
           </div>
         </div>
       </article>
@@ -69,6 +70,7 @@ const mapStateToProps = (state) => {
   return {
     data: makeSelectData()(state),
     listDiagram: makeSelectListDiagram()(state),
+    _loading: makeSelectLoading()(state),
   }
 } 
 const withConnect = connect(

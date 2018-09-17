@@ -23,13 +23,13 @@ export const fakeService = {
                     resolve(db[username].role);
                 else
                     reject(new Error("Login failed"));
-            }, 3000);
+            }, 1500);
         });
     },
-    createDiagram: (id, description) => {
+    createDiagram: (title, description) => {
        return new Promise((resolve, reject)=>{
             setTimeout(()=>{
-                dbdiagram.data.push({id: dbdiagram.data.count + 1, title, description, img});
+                dbdiagram.data.push({id: ++dbdiagram.data.count, title, description, img: imgplaceholder});
                 resolve(); 
             }, 1000);
        });
@@ -37,7 +37,7 @@ export const fakeService = {
     loadDiagram: (id) => {
         return new Promise((resolve, reject)=>{
             setTimeout(()=>{
-                const index = dbdiagram.findIndex(d => d.id === id);
+                const index = dbdiagram.data.findIndex(d => d.id == id);
                 if (index !== -1)
                     resolve(dbdiagram.data[index]);
                 else 

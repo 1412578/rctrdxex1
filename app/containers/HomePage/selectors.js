@@ -12,7 +12,7 @@ const makeSelectUsername = () =>
   createSelector(selectHome, homeState => homeState.get('username'));
 
 const makeSelectLoading = () => 
-  createSelector(selectHome, (home)=> home.get("_loading"));
+  createSelector(selectHome, (home)=> home.get("list-diagram").get("_loading"));
 
 const makeSelectSuccess = () => 
   createSelector(selectHome, (home)=> home.get("_success"));

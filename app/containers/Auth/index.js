@@ -19,6 +19,7 @@ import  HomePage  from 'containers/HomePage/Loadable';
 import NotFoundPage from 'containers/NotFoundPage/Loadable';
 import Header from 'components/Header';
 import NewDiagramPage from 'containers/NewDiagramPage/Loadable';
+import DiagramConstructPage from 'containers/DiagramConstructPage/Loadable'
 
 /* eslint-disable react/prefer-stateless-function */
 export class Auth extends React.Component {
@@ -42,6 +43,7 @@ export class Auth extends React.Component {
           <Switch>
             <Route exact path="/home" component={HomePage} />
             <Route exact path="/new" component={NewDiagramPage} />
+            <Route exact path="/diagram/:id" component={DiagramConstructPage} />
             <Route exact path="/" component={HomePage} />
             <Route path="" component={NotFoundPage} />
           </Switch>
