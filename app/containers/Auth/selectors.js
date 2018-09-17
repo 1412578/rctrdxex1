@@ -18,5 +18,6 @@ const selectAuthDomain = state => state.get('auth', initialState);
 const makeSelectAuth = () =>
   createSelector(selectAuthDomain, substate => substate.toJS());
 
+
 export default makeSelectAuth;
 export { selectAuthDomain };

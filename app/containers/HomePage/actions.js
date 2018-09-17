@@ -15,8 +15,11 @@
  *    }
  */
 
-import { CHANGE_USERNAME, API_REQUEST, API_REQUEST_FAILURE, API_REQUEST_SUCCESS } from './constants';
+import { CHANGE_USERNAME, API_REQUEST, API_REQUEST_FAILURE, API_REQUEST_SUCCESS,
+          LIST_DIAGRAM_FAILURE, LIST_DIAGRAM_REQUEST, LIST_DIAGRAM_SUCCESS } from './constants';
 import requestUtils from 'utils/request';
+import { fakeService } from 'utils/fakeService';
+import {fromJS} from 'immutable';
 
 /**
  * Changes the input field of the form
@@ -64,5 +67,33 @@ export function submit(){
     return {
       type: API_REQUEST
     }
+  }
+}
+
+export function loadListDiagram() {
+  return (dispatch, getState) => {
+    dispatch(request());
+    fakeService.listDiagram().then(data=>{
+      dispatch(success(data));
+    }).catch(err=>{
+      dispatch(failure());
+    });
+  }
+  function request() {
+    return {
+      type: LIST_DIAGRAM_REQUEST
+    };
+  }
+  function success(data) {
+    return {
+      type: LIST_DIAGRAM_SUCCESS,
+      data: fromJS(data)
+    };
+  }
+  function failure(err) {
+    return {
+      type: LIST_DIAGRAM_FAILURE,
+      err: err
+    };
   }
 }

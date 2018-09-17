@@ -6,10 +6,19 @@ import Icon from './Icon';
 
 /* eslint-disable react/prefer-stateless-function */
 class Header extends React.Component {
+  handleSelectNavBar = (eventKey) =>{
+    switch (eventKey){
+      case 1:
+        this.props.changeURL("/new");        
+        break;
+      default:
+        break;
+    }
+  }
   render() {
     const { handleLogout } = this.props;
     return (
-      <Navbar fluid fixedTop>
+      <Navbar fluid staticTop onSelect={this.handleSelectNavBar}>
         <Navbar.Header>
           <Navbar.Brand>
             <Link to="/">ABC</Link>

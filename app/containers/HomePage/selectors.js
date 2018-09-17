@@ -4,6 +4,7 @@
 
 import { createSelector } from 'reselect';
 import { initialState } from './reducer';
+import { select } from 'redux-saga/effects';
 
 const selectHome = state => state.get('home', initialState);
 
@@ -20,5 +21,9 @@ const makeSelectData = () => createSelector(selectHome, (home) => home.get("data
 
 const makeSelectError = () => createSelector(selectHome, home => home.get("_error"));
 
+const makeSelectListDiagram = () => createSelector(selectHome, home=> home.get("list-diagram").get("data").toJS());
 
-export { selectHome, makeSelectUsername, makeSelectLoading, makeSelectSuccess, makeSelectData, makeSelectError };
+
+export { selectHome, makeSelectUsername, makeSelectLoading,
+       makeSelectSuccess, makeSelectData, makeSelectError,
+      makeSelectListDiagram };

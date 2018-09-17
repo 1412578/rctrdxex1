@@ -13,3 +13,6 @@ export const CHANGE_USERNAME = 'boilerplate/Home/CHANGE_USERNAME';
 export const API_REQUEST = 'boilerplate/Home/API_REUQEST';
 export const API_REQUEST_SUCCESS = 'boilerplate/Home/API_REUQEST_SUCCESS';
 export const API_REQUEST_FAILURE = 'boilerplate/Home/API_REUQEST_FAILURE';
+export const LIST_DIAGRAM_REQUEST = 'boilerplate/Home/LIST_REQUEST_REQUEST';
+export const LIST_DIAGRAM_SUCCESS = 'boilerplate/Home/LIST_REQUEST_SUCCESS';
+export const LIST_DIAGRAM_FAILURE = 'boilerplate/Home/LIST_REQUEST_FAILURE';

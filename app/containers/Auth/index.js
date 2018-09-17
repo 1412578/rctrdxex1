@@ -7,20 +7,18 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { FormattedMessage } from 'react-intl';
-import { createStructuredSelector } from 'reselect';
 import { compose } from 'redux';
-
 import injectReducer from 'utils/injectReducer';
-import {makeSelectRequest} from './selectors';
 import reducer from './reducer';
 import messages from './messages';
 import {Switch, Route, Link, Redirect} from 'react-router-dom';
+import {push} from 'react-router-redux';
 import {makeSelectLogin} from 'containers/App/selectors';
 import {login, logout} from 'containers/App/actions';
 import  HomePage  from 'containers/HomePage/Loadable';
 import NotFoundPage from 'containers/NotFoundPage/Loadable';
 import Header from 'components/Header';
+import NewDiagramPage from 'containers/NewDiagramPage/Loadable';
 
 /* eslint-disable react/prefer-stateless-function */
 export class Auth extends React.Component {
@@ -40,9 +38,10 @@ export class Auth extends React.Component {
       return (
         <div>
           {!this.props.login && <Redirect to={{ pathname: "/login", state: { referer: this.props.location.pathname } }} />}
-          <Header handleLogout={this.props.handleLogout} username={username}/>
+          <Header handleLogout={this.props.handleLogout} username={username} changeURL={this.props.changeURL}/>
           <Switch>
             <Route exact path="/home" component={HomePage} />
+            <Route exact path="/new" component={NewDiagramPage} />
             <Route exact path="/" component={HomePage} />
             <Route path="" component={NotFoundPage} />
           </Switch>
@@ -63,6 +62,9 @@ function mapDispatchToProps(dispatch) {
   return {
     setLogin: (username) => dispatch(login(username)),
     handleLogout: () => dispatch(logout()),
+    changeURL: (url) => {
+      dispatch(push(url));
+    },
     dispatch,
   };
 }

@@ -13,9 +13,12 @@ import injectReducer from 'utils/injectReducer';
 import injectSaga from 'utils/injectSaga';
 import reducer from './reducer';
 import saga from './saga';
-import { makeSelectSuccess, makeSelectLoading, makeSelectData, makeSelectError } from './selectors';
+import { makeSelectSuccess, makeSelectLoading, makeSelectData, makeSelectError, makeSelectListDiagram } from './selectors';
 import Button from 'components/Button';
-import {submit} from './actions'
+import {submit, loadListDiagram} from './actions'
+import {DiagramItem} from './DiagramItem';
+import placeholder from 'images/placeholder.png';
+import { DiagramList } from './DiagramList';
 
 /* eslint-disable react/prefer-stateless-function */
 export class HomePage extends React.PureComponent {
@@ -23,6 +26,10 @@ export class HomePage extends React.PureComponent {
    * when initial state username is not null, submit the form to load repos
    */
 
+  componentDidMount(){
+    console.log("sssssss")
+      this.props.loadListDiagram();
+  }
   render() {
     return (
       <article>
@@ -33,8 +40,13 @@ export class HomePage extends React.PureComponent {
             content="A React.js Boilerplate application homepage"
           />
         </Helmet>
-        <div>
-          Homepage
+        <div className="container">
+          <div className="row">
+            <div className="col-xs-12"><h3>Diagrams</h3></div>
+          </div>
+          <div className="row">
+            <DiagramList diagrams={this.props.listDiagram}/>
+          </div>
         </div>
       </article>
     );
@@ -48,16 +60,15 @@ HomePage.propTypes = {
 
 export function mapDispatchToProps(dispatch) {
   return {
-    handleLoading: () => dispatch(submit())
+    handleLoading: () => dispatch(submit()),
+    loadListDiagram: () => dispatch(loadListDiagram()),
   };
 }
 
 const mapStateToProps = (state) => {
   return {
-    _loading: makeSelectLoading()(state),
-    _success: makeSelectSuccess()(state),
-    _error: makeSelectError()(state),
-    data: makeSelectData()(state)
+    data: makeSelectData()(state),
+    listDiagram: makeSelectListDiagram()(state),
   }
 } 
 const withConnect = connect(

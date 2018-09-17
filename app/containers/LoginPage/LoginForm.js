@@ -1,5 +1,6 @@
 import React from 'react';
 import {reduxForm, Field} from 'redux-form/immutable';
+import RenderField from 'components/RenderField';
 
 const isRequired = (value) => value;
 const validate = (values) => {
@@ -10,26 +11,16 @@ const validate = (values) => {
         errors.password = "Password is required";
     return errors;
 }
-const renderField = ({input, type, label, meta: {error, warn, touched}})=>{
-    const hasError = touched && error;
-    const formGroupClass = "form-group " + (hasError ? "has-error" : "");
-    
-    return <div className={formGroupClass}>
-        <label htmlFor={input.name}>{label}</label>
-        <input {...input} type={type} className="form-control" />
-        {touched && error && <small className="help-text">{error}</small> }
-    </div>
-}
 const LoginForm = ({handleSubmit, error, pristine, submitting}) =>{
     return <form onSubmit={handleSubmit} className="mb-5">
         <Field 
-            component={renderField}
+            component={RenderField}
             type="text"
             name="username"
             label="Username"
             autoComplete="username" />
         <Field 
-            component={renderField}
+            component={RenderField}
             type="password"
             name="password"
             label="Password"
