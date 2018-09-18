@@ -1,0 +1,26 @@
+$status-color: white;
+$gauge-bg-color: $brand-primary;
+$size-control-bg-color: #55556b;
+$gauge-border-color: $brand-primary;
+.size-control{
+    border: solid 1px $gauge-border-color;
+    display: block;
+    position: relative;
+    min-height: 50px;
+    background-color: $size-control-bg-color;
+    .status{
+        color: $status-color;
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+    }
+    .gauge{
+        background-color: $gauge-bg-color;
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 50%;
+    }
+}

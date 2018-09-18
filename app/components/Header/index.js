@@ -11,6 +11,9 @@ class Header extends React.Component {
       case 1:
         this.props.changeURL("/new");        
         break;
+      case 2:
+        this.props.changeURL("/chart");
+        break;
       default:
         break;
     }
@@ -27,6 +30,9 @@ class Header extends React.Component {
         </Navbar.Header>
         <Nav>
           <NavItem eventKey={1}>Create new diagram</NavItem>
+        </Nav>
+        <Nav>
+          <NavItem eventKey={2}>Chart</NavItem>
         </Nav>
         <Nav>
           <input type="text" placeholder="...diagrams" className="search"/>

@@ -1,11 +1,15 @@
 @import 'custom-variables';
 @import 'utils';
 @import 'bootstrap';
+@import 'toolbar';
+@import 'size-control';
 
+svg{
+  stroke: $brand-primary;  
+}
 label{
     font-family: 'Roboto', sans-serif;
 }
-
 .panel{
     overflow: hidden;
 }

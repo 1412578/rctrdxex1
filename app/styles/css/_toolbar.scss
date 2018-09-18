@@ -1,0 +1,39 @@
+$page-margin-top: -#{$navbar-margin-bottom}px;
+$canvas-backdrop: #333333;
+$canvas-bg-color: white;
+$toolbar-bg-color: #fdfdfd;
+$toolbar-width: 300px;
+.canvas{
+    margin: auto auto;
+    width: 800px;
+    height: 600px;
+    fill: $canvas-bg-color;
+}
+.diagram-construct{
+    display: flex;
+    flex-direction: row;
+    width: 100vw;
+    height: calc(100vh - #{$navbar-height} - #{$navbar-margin-bottom});
+    background-color: $canvas-backdrop;
+    margin-top: -#{$navbar-margin-bottom};
+}
+.btn-group-no-corner > button{
+    border-radius: 0!important;
+}
+.toolbar{
+    width: $toolbar-width;
+    padding: 20px 10px;
+    background-color: $toolbar-bg-color;
+    h4 {
+       color: $brand-primary;
+       font-size: 16px; 
+       font-weight: 600;
+       margin-bottom: 20px;
+    }  
+    label{
+        font-weight: normal;
+    }
+    .toolbar-group{
+        margin-bottom: 30px;
+    } 
+}
