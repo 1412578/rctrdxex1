@@ -20,6 +20,7 @@ const makeSelectDiagramConstructPage = () =>
   createSelector(selectDiagramConstructPageDomain, substate => substate.toJS());
 
 const makeSelectDiagram = createSelector(selectDiagramConstructPageDomain, domain => domain.data.toJS())
+const selectShape = createSelector(selectDiagramConstructPageDomain, domain => domain.get("shape"));
 
 export default makeSelectDiagramConstructPage;
-export { selectDiagramConstructPageDomain };
+export { selectDiagramConstructPageDomain, selectShape };

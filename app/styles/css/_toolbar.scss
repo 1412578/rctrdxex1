@@ -24,6 +24,8 @@ $toolbar-width: 300px;
     width: $toolbar-width;
     padding: 20px 10px;
     background-color: $toolbar-bg-color;
+    //overflow-y: scroll;
+    overflow-x: hidden; 
     h4 {
        color: $brand-primary;
        font-size: 16px; 

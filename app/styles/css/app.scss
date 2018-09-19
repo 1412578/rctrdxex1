@@ -39,3 +39,38 @@ label{
         background-color: darken($brand-primary, 10%);
     }
 }
+@mixin content-color($color, $bgcolor) {
+        color: $color;
+        svg *{
+            stroke: $color;
+            stroke-width: 1;
+        }
+        background-color: $bgcolor;
+}
+.btn-shape{
+    @extend .btn;
+    @extend .btn-default;
+    @include button-variant($btn-default-color, $btn-default-bg, $brand-primary);
+    &:hover{
+        @include content-color(black, lighten($brand-primary, 60%))
+    }
+    &:focus{
+        @include content-color(white, lighten($brand-primary, 15%))
+    }
+    &, &:active, &.active {
+        &:focus, &.focus {
+            @include tab-focus-custom(white, $brand-primary);
+        }
+    }
+}
+.row.no-gutter{
+    margin-left: 0;
+    margin-right: 0;
+    [class*='col-']{
+        padding-left: 0;
+        padding-right: 0;
+    }
+}
+.canvas{
+    background-color: white;
+}

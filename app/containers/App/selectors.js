@@ -29,6 +29,8 @@ const makeSelectLogin = () =>
 const makeSelectLocation = () =>
   createSelector(selectRoute, routeState => routeState.get('location').toJS());
 
+const makeSelectTracking = (state) => state.get("mouseTracking").toJS();
+
 export {
   selectGlobal,
   makeSelectCurrentUser,
@@ -36,5 +38,6 @@ export {
   makeSelectError,
   makeSelectRepos,
   makeSelectLocation,
-  makeSelectLogin
+  makeSelectLogin,
+  makeSelectTracking,
 };

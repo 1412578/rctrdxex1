@@ -38,7 +38,7 @@ class Header extends React.Component {
           <input type="text" placeholder="...diagrams" className="search"/>
         </Nav>
         <Nav pullRight>
-          <NavDropdown title={this.props.username}>
+          <NavDropdown title={this.props.username} id="dropdown">
             <MenuItem>
               <div className="media">
                 <div className="media-left media-middle">

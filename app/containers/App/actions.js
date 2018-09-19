@@ -71,3 +71,28 @@ export function logout(){
     type: LOGOUT
   }
 }
+
+export function trackingChange(x, y){
+  return {
+    type: "TRACKING_CHANGE",
+    x: x,
+    y: y,
+  }
+}
+
+export function beginTracking(x, y, name){
+  return {
+    type: "BEGIN_TRACKING",
+    x: x,
+    y: y,
+    name: name,
+  }
+}
+
+export function stopTracking(x, y){
+  return {
+    type: "TRACKING_CHANGE",
+    x: x,
+    y: y,
+  }
+}

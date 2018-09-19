@@ -54,7 +54,10 @@ const mouseTrackingReducer = (state = fromJS(mouseTrackingInitialState), action)
         return state.set("x", action.x).set("y", action.y);
       else return state;
     case "BEGIN_TRACKING":
-      return state.set("tracking", true).set("_x", action.x).set("_y", action.y);
+      return state.set("tracking", true)
+                  .set("_x", action.x)
+                  .set("_y", action.y)
+                  .set("name", action.name);
     case "STOP_TRACKING":
       return state.set("tracking", false).set("_x", action.x).set("_y", action.y);
     default:
