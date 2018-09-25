@@ -18,30 +18,23 @@ import makeSelectAnotherChartPage from './selectors';
 import reducer from './reducer';
 import saga from './saga';
 import messages from './messages';
-import {Pie} from 'react-chartjs';
-
-const data = [
-  {
-		value: 300,
-		color:"#F7464A",
-		highlight: "#FF5A5E",
-		label: "Red"
-	},
-	{
-		value: 50,
-		color: "#46BFBD",
-		highlight: "#5AD3D1",
-		label: "Green"
-	},
-	{
-		value: 100,
-		color: "#FDB45C",
-		highlight: "#FFC870",
-		label: "Yellow"
-	}
-]
+import  Modal  from "react-modal";
 /* eslint-disable react/prefer-stateless-function */
+
+
 export class AnotherChartPage extends React.Component {
+  constructor (props) {
+    super(props)
+    this.state = {
+      show: false
+    };
+  }
+  handleClickShowModal = () => {
+    this.setState({show: true});
+  }
+  handleClickHideModal = () => {
+    this.setState({show: false});
+  } 
   render() {
     return (
       <div>
@@ -49,7 +42,11 @@ export class AnotherChartPage extends React.Component {
           <title>AnotherChartPage</title>
           <meta name="description" content="Description of AnotherChartPage" />
         </Helmet>
-       <Pie data={data} /> 
+        <button className="show-modal" onClick={this.handleClickShowModal}>Show modal</button>
+        <Modal isOpen={this.state.show}>
+          <button className="close-modal" onClick={this.handleClickHideModal}>close</button>
+          <h1>modal</h1>
+        </Modal>
       </div>
     );
   }
