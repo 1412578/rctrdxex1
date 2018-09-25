@@ -1,6 +1,7 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import {selectShape} from './selectors';
+import {LineCharts, Line} from 'recharts';
 
 export class Canvas extends React.Component {
     constructor(props){

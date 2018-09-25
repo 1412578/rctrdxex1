@@ -17,9 +17,7 @@ import injectReducer from 'utils/injectReducer';
 import makeSelectChartPage from './selectors';
 import reducer from './reducer';
 import saga from './saga';
-import messages from './messages';
-import {LineChart} from 'react-d3-basic';
-import {Chart} from 'react-d3-core';
+import * as d3 from "d3";
 
 const data = [ 
  {
@@ -60,6 +58,19 @@ x = function(d) {
 }
 /* eslint-disable react/prefer-stateless-function */
 export class ChartPage extends React.Component {
+  constructor(props){
+    super(props);
+    this.chartRef = React.createRef();
+  }
+  componentDidMount(){
+    d3.select(this.chartRef.current)
+      .append("svg")
+      .selectAll("g")
+      .data(data)
+      .enter()
+      .append("g")
+      .append;
+  }
   render() {
     return (
       <div>
@@ -67,7 +78,8 @@ export class ChartPage extends React.Component {
           <title>ChartPage</title>
           <meta name="description" content="Description of ChartPage" />
         </Helmet>
-        <a>chart</a>
+        <div ref={this.chartRef}>
+        </div>
       </div>
     );
   }

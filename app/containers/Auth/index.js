@@ -21,6 +21,7 @@ import Header from 'components/Header';
 import NewDiagramPage from 'containers/NewDiagramPage/Loadable';
 import DiagramConstructPage from 'containers/DiagramConstructPage/Loadable'
 import ChartPage from 'containers/ChartPage/Loadable';
+import AnotherChartPage from 'containers/AnotherChartPage/Loadable';
 
 /* eslint-disable react/prefer-stateless-function */
 export class Auth extends React.Component {
@@ -45,6 +46,7 @@ export class Auth extends React.Component {
             <Route exact path="/home" component={HomePage} />
             <Route exact path="/new" component={NewDiagramPage} />
             <Route exact path="/chart" component={ChartPage} />
+            <Route exact path="/chart2" component={AnotherChartPage} />
             <Route exact path="/diagram/:id" component={DiagramConstructPage} />
             <Route exact path="/" component={HomePage} />
             <Route path="" component={NotFoundPage} />

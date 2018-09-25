@@ -11,3 +11,11 @@ export function defaultAction() {
     type: DEFAULT_ACTION,
   };
 }
+export function sendMessage(){
+  return (dispatch, getState) {
+    dispatch({
+      type: SEND_REQUEST
+      
+    })
+  }
+}
