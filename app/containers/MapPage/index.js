@@ -19,6 +19,7 @@ import reducer from './reducer';
 import saga from './saga';
 import MapDiv from './MapDiv';
 import loadGoogleMapsApi from 'load-google-maps-api';
+import _ from 'lodash';
 
 /* eslint-disable react/prefer-stateless-function */
 const getCurrentPos = ()=>{
@@ -40,12 +41,13 @@ export class MapPage extends React.Component {
     .then((googleMaps) => {
       this.googleMaps = googleMaps;
       this.map = new googleMaps.Map(this.mapDiv.current, {
-        center: {
-          lat: 40.7484405,
-          lng: -73.9944191
+        position: {
+          lat: 10,
+          lng: 10,
         },
-        zoom: 12
-      })
+        zoom: 12,
+      });
+      this.geocoder = new googleMaps.Geocoder();
       return getCurrentPos();
     })
     .then(data => {
@@ -53,8 +55,16 @@ export class MapPage extends React.Component {
     })
     .catch(error => console.log(error));
   }
+  addRandomMarker = () => {
+    const lat = Math.round(Math.random() * 240) - 120;
+    const lng = Math.round(Math.random() * 240) - 120;
+    new this.googleMaps.Marker({position: {lat, lng}, map: this.map});
+  }
   handleClick = () =>{
-    new this.googleMaps.Marker({position: {lat: 40, lng: 40}, map: this.map})
+    this.geocoder.geocode({'address': '170 Quoc lo 1A'}, (results, status)=>{
+      _.range(200).forEach(()=>this.addRandomMarker());
+      
+    });
   }
   render() {
     return (
