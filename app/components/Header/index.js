@@ -16,6 +16,8 @@ class Header extends React.Component {
         break;
       case 3: this.props.changeURL("/chart2");
         break;
+      case 4: this.props.changeURL("/map");
+        break;
       default:
         break;
     }
@@ -38,6 +40,9 @@ class Header extends React.Component {
         </Nav>
         <Nav>
           <NavItem eventKey={3}>React-chartjs</NavItem>
+        </Nav>
+        <Nav>
+          <NavItem eventKey={4}>Map</NavItem>
         </Nav>
         <Nav>
           <input type="text" placeholder="...diagrams" className="search"/>
