@@ -37,7 +37,9 @@ export class MapPage extends React.Component {
   constructor (props) {
     super(props)
     this.mapDiv = React.createRef();
+    this.mapZoomDiv = React.createRef();
     this.map = null;
+    this.mapZoom = null;
     this.googleMaps = null;
     this.markerPos = {lat: 0, lng: 0};
   }
@@ -57,12 +59,22 @@ export class MapPage extends React.Component {
         zoom: 12,
       });
 
+      this.mapZoom = new googleMaps.Map(this.mapZoomDiv.current, {
+        position: {
+          lat: 10,
+          lng: 10,
+        },
+        mapTypeId: 'terrain',
+        zoom: 5,
+      });
+
       this.geocoder = new googleMaps.Geocoder();
 
       return getCurrentPos();
     })
     .then(data => {
       this.map.setCenter({lat: data.coords.latitude, lng: data.coords.longitude});
+      this.mapZoom.setCenter({lat: data.coords.latitude, lng: data.coords.longitude});
 
       this.googleMaps.event.addDomListener(this.mapDiv.current, 'mouseup', (e)=>{
         if (this.props.mappage.isMarkerSelecting){
@@ -118,6 +130,8 @@ export class MapPage extends React.Component {
           <meta name="description" content="Description of MapPage" />
         </Helmet>
         <div className="sidebar">
+          <div className="map-zoom" ref={this.mapZoomDiv}>
+          </div>
           <h5>Want to do something ?</h5>
           <button
             onClick={this.handleClick}
@@ -147,8 +161,8 @@ export class MapPage extends React.Component {
             <MapLens
               top={this.props.mappage["lens-y"]}
               left={this.props.mappage["lens-x"]}
-              width={100}
-              height={100}
+              width={150}
+              height={150}
             /> 
           }
         <MapDiv id="map" className="map" innerRef={this.mapDiv}>

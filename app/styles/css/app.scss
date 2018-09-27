@@ -109,17 +109,19 @@ label{
         display: flex;
         flex-grow: 1;
         position: relative;
+        overflow: hidden;
     }
     .map {
         mix-blend-mode: exclusion;
     }
     .sidebar{
+        overflow: hidden;
        max-width: 300px; 
        width: 25vw;
        background-color: $map-sidebar-color;
        display: flex;
        flex-direction: column;
-       justify-content: center;
+       //justify-content: center;
        padding: 20px;
        align-items: center;
     }
@@ -166,4 +168,22 @@ label{
             box-shadow: 0 0 5px 5px rgba(0,0,0,0.1);
         }
     }
+    .direction {
+        svg {
+            width: 100%;
+            circle#backdrop{
+                fill: darken($brand-primary, 10%);
+            }
+            circle#point{
+                fill: black;
+            }
+        }
+    }
+}
+.map-zoom{
+    height: 200px;
+    width: 200px;
+    border-radius: 50%;
+    filter: invert(1);
+    margin-bottom: 200px;
 }
