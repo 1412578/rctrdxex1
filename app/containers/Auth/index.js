@@ -40,7 +40,7 @@ export class Auth extends React.Component {
   render() {
       const username = localStorage.getItem("username");
       return (
-        <div>
+        <React.Fragment>
           {!this.props.login && <Redirect to={{ pathname: "/login", state: { referer: this.props.location.pathname } }} />}
           <Header handleLogout={this.props.handleLogout} username={username} changeURL={this.props.changeURL}/>
           <Switch>
@@ -53,7 +53,7 @@ export class Auth extends React.Component {
             <Route exact path="/" component={HomePage} />
             <Route path="" component={NotFoundPage} />
           </Switch>
-        </div>
+        </React.Fragment>
       );
   }
 }

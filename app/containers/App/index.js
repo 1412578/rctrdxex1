@@ -20,7 +20,7 @@ import Auth from 'containers/Auth/Loadable';
 
 export default function App() {
   return (
-    <div>
+    <React.Fragment>
       <Helmet
         titleTemplate="%s - React.js Boilerplate"
         defaultTitle="React.js Boilerplate"
@@ -31,6 +31,6 @@ export default function App() {
         <Route exact path="/login" component={LoginPage} />
         <Route path="" component={Auth} />
       </Switch>
-    </div>
+    </React.Fragment>
   );
 }

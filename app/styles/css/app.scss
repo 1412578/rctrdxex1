@@ -4,6 +4,10 @@
 @import 'toolbar';
 @import 'size-control';
 
+#app{
+    display: flex;
+    flex-direction: column;
+}
 svg{
   stroke: $brand-primary;  
 }
@@ -96,5 +100,70 @@ label{
     }
     .right {
         font-size: 16px;
+    }
+}
+.map-layout{
+    $map-sidebar-color: hsl(210, 30%, 98%);
+    display: flex;
+    .map, .map-wrapper{
+        display: flex;
+        flex-grow: 1;
+        position: relative;
+    }
+    .map {
+        mix-blend-mode: exclusion;
+    }
+    .sidebar{
+       max-width: 300px; 
+       width: 25vw;
+       background-color: $map-sidebar-color;
+       display: flex;
+       flex-direction: column;
+       justify-content: center;
+       padding: 20px;
+       align-items: center;
+    }
+    h5{
+        margin-bottom: 30px;
+    }
+    .btn-map{
+        @extend .btn-shape;
+        width: 100%;
+        max-width: 200px;
+        margin-bottom: 10px;
+    }
+    .markers-panel{
+        display: flex; 
+        width: 100%;
+        padding: 10px;
+        justify-content: space-around;
+        background-color: white;
+        border-radius: 4px;
+        margin-bottom: 10px;
+        box-shadow: 0 0 17px 1px rgba(0,0,0,0.05), 0px 1px 4px -2px rgba(0,0,0,0.6);
+        .marker { 
+            img {
+                height: 30px;
+                transition: transform 0.2s ease-out;
+                pointer-events: none;
+                filter: grayscale(1);
+                &:hover{
+                    transform: scale(1.1);
+                }
+            }
+        }
+        .marker-wrapper{
+            position: relative;
+        }
+        .drag-marker{
+            position: absolute;
+            top:0;
+            left: 0;
+        }
+        .react-draggable-dragging{
+            border: solid 5px white;
+            border-radius: 50%;
+            box-shadow: 0 0 5px 5px rgba(0,0,0,0.1);
+        }
     }
 }
