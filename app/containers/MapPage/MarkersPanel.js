@@ -11,7 +11,7 @@ function Marker(props) {
       </div>);
 }
 
-function MarkersPanel({markers = [], show, onStart, onStop}){
+function MarkersPanel({markers = [], show = false, onStart, onStop}){
   if (show)
     return (
       <div className='markers-panel'>

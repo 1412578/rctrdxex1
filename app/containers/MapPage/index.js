@@ -25,13 +25,9 @@ import MapLens from './MapLens';
 import {showMarkersPanel, selectMarker,
         leaveMarker, moveLens} from './actions';
 import Markers from './Markers'; 
+import {getCurrentPos} from './utils';
 
 /* eslint-disable react/prefer-stateless-function */
-const getCurrentPos = ()=>{
-  return new Promise((resolve, reject) =>{
-    navigator.geolocation.getCurrentPosition(resolve, reject);
-  });
-}
 export class MapPage extends React.Component {
   constructor (props) {
     super(props)
@@ -41,7 +37,6 @@ export class MapPage extends React.Component {
     this.mapZoom = null;
     this.googleMaps = null;
     this.markerPos = {lat: 0, lng: 0};
-      this.props.dispatch("wewe");
   }
   componentDidMount () {
     loadGoogleMapsApi({
@@ -109,12 +104,15 @@ export class MapPage extends React.Component {
         this.props.showMarkersPanel();
         break;
       case "get-current-position":
+        const a = null;
         getCurrentPos().then(position => {
           this.map.setCenter({
             lat: position.coords.latitude,
             lng: position.coords.longitude,
             });
           this.map.setZoom(12);
+          console.log("ddddddddddddddd");
+          console.log(JSON.stringify(this.map));
         });
         break;
     }
