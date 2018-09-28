@@ -19,7 +19,6 @@ import saga from './saga';
 import MapDiv from './MapDiv';
 import loadGoogleMapsApi from 'load-google-maps-api';
 import _ from 'lodash';
-import earthquake_GeoJSONP from 'file-loader!../../res/map.geojson';
 import FullBodyDiv from './FullBodyDiv';
 import MarkersPanel from './MarkersPanel';
 import MapLens from './MapLens';
@@ -42,6 +41,7 @@ export class MapPage extends React.Component {
     this.mapZoom = null;
     this.googleMaps = null;
     this.markerPos = {lat: 0, lng: 0};
+      this.props.dispatch("wewe");
   }
   componentDidMount () {
     loadGoogleMapsApi({
@@ -55,7 +55,6 @@ export class MapPage extends React.Component {
           lat: 10,
           lng: 10,
         },
-        mapTypeId: 'terrain',
         zoom: 12,
       });
 
@@ -64,7 +63,6 @@ export class MapPage extends React.Component {
           lat: 10,
           lng: 10,
         },
-        mapTypeId: 'terrain',
         zoom: 5,
       });
 
@@ -75,7 +73,6 @@ export class MapPage extends React.Component {
     .then(data => {
       this.map.setCenter({lat: data.coords.latitude, lng: data.coords.longitude});
       this.mapZoom.setCenter({lat: data.coords.latitude, lng: data.coords.longitude});
-
       this.googleMaps.event.addDomListener(this.mapDiv.current, 'mouseup', (e)=>{
         if (this.props.mappage.isMarkerSelecting){
           const icon = Markers.find(marker => marker.id === this.props.mappage.markerSelected);
