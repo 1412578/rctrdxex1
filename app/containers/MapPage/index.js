@@ -25,7 +25,7 @@ import MapLens from './MapLens';
 import {showMarkersPanel, selectMarker,
         leaveMarker, moveLens} from './actions';
 import Markers from './Markers'; 
-import {getCurrentPos} from './utils';
+import {getCurrentPos, fromPixelToLatLng, point2LatLng} from './utils';
 
 /* eslint-disable react/prefer-stateless-function */
 export class MapPage extends React.Component {
@@ -71,13 +71,16 @@ export class MapPage extends React.Component {
       this.googleMaps.event.addDomListener(this.mapDiv.current, 'mouseup', (e)=>{
         if (this.props.mappage.isMarkerSelecting){
           const icon = Markers.find(marker => marker.id === this.props.mappage.markerSelected);
-          this.addMarker(this.markerPos, icon);
+          // from offsetX, offsetY of mouse to lattidue, longitude
+          const latLng = point2LatLng({x: e.offsetX, y: e.offsetY},this.map, this.googleMaps);
+
+          this.addMarker({lat: latLng.lat(), lng: latLng.lng()}, icon);
+
           this.props.dispatch(leaveMarker());
         }
       });
 
       this.map.addListener("mousemove", ({latLng, pixel})=>{
-        this.markerPos = {lat: latLng.lat(), lng: latLng.lng()};
         this.props.dispatch(moveLens(pixel.x, pixel.y));        
       });
     })
