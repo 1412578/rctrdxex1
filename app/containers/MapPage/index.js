@@ -37,6 +37,8 @@ export class MapPage extends React.Component {
     this.mapZoom = null;
     this.googleMaps = null;
     this.markerPos = {lat: 0, lng: 0};
+    this.markers = [];
+    this.polyline = null;
   }
   componentDidMount () {
     loadGoogleMapsApi({
@@ -60,6 +62,13 @@ export class MapPage extends React.Component {
         },
         zoom: 5,
       });
+      
+      this.polyline = new this.googleMaps.Polyline({
+        geodesic: true,
+        strokeColor: '#FF0000',
+        strokeOpacity: 1.0,
+        strokeWeight: 2
+      });
 
       this.geocoder = new googleMaps.Geocoder();
 
@@ -70,11 +79,25 @@ export class MapPage extends React.Component {
       this.mapZoom.setCenter({lat: data.coords.latitude, lng: data.coords.longitude});
       this.googleMaps.event.addDomListener(this.mapDiv.current, 'mouseup', (e)=>{
         if (this.props.mappage.isMarkerSelecting){
-          const icon = Markers.find(marker => marker.id === this.props.mappage.markerSelected);
-          // from offsetX, offsetY of mouse to lattidue, longitude
-          const latLng = point2LatLng({x: e.offsetX, y: e.offsetY},this.map, this.googleMaps);
 
-          this.addMarker({lat: latLng.lat(), lng: latLng.lng()}, icon);
+          const icon = Markers.find(
+            marker => marker.id === this.props.mappage.markerSelected
+          );
+
+          // from offsetX, offsetY of mouse to lattidue, longitude
+          const latLng = point2LatLng({
+            x: e.offsetX,
+            y: e.offsetY
+          }, this.map, this.googleMaps);
+
+          this.addMarker({
+            lat: latLng.lat(),
+            lng: latLng.lng()
+          }, icon);
+
+          this.markers.push({lat: latLng.lat(), lng: latLng.lng()});
+          this.polyline.setPath(this.markers);
+          this.polyline.setMap(this.map);
 
           this.props.dispatch(leaveMarker());
         }
@@ -83,6 +106,7 @@ export class MapPage extends React.Component {
       this.map.addListener("mousemove", ({latLng, pixel})=>{
         this.props.dispatch(moveLens(pixel.x, pixel.y));        
       });
+      
     })
     .catch(error => console.log(error));
   }
@@ -114,8 +138,6 @@ export class MapPage extends React.Component {
             lng: position.coords.longitude,
             });
           this.map.setZoom(12);
-          console.log("ddddddddddddddd");
-          console.log(JSON.stringify(this.map));
         });
         break;
     }
