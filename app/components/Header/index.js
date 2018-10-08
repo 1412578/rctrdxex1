@@ -18,6 +18,8 @@ class Header extends React.Component {
         break;
       case 4: this.props.changeURL("/map");
         break;
+      case 5: this.props.changeURL("/formpage");
+        break;
       default:
         break;
     }
@@ -43,6 +45,9 @@ class Header extends React.Component {
         </Nav>
         <Nav>
           <NavItem eventKey={4}>Map</NavItem>
+        </Nav>
+        <Nav>
+          <NavItem eventKey={5}>FormPage</NavItem>
         </Nav>
         <Nav>
           <input type="text" placeholder="...diagrams" className="search"/>

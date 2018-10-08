@@ -42,7 +42,7 @@ export const fakeService = {
                     resolve(dbdiagram.data[index]);
                 else 
                     reject("Cannot load diagram");
-            }, 1000);
+            }, 500);
         })
     },
     listDiagram: () => {

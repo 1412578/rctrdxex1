@@ -46,7 +46,6 @@ export class MapPage extends React.Component {
     })
     .then((googleMaps) => {
       this.googleMaps = googleMaps;
-
       this.map = new googleMaps.Map(this.mapDiv.current, {
         position: {
           lat: 10,
